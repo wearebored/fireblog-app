@@ -46,63 +46,97 @@ It is a blog web page created using router, redux toolkit and firebase.
 ## Project Skeleton
 
 ```
-Clarusway Web Page (folder)
+Blog Web Page (folder)
 |
 ├── public
 |     ├── images
 │     └── index.html
 |
 ├── src
+│    ├── app
+|    │       |
+|    |       ├── features
+|    │       |     ├── LoginSlice.jsx
+|    │       |     └── ModalSlice.jsx
+|    |       |
+|    │       |
+|    │       └── store.jsx
+|    |
 │    ├── components
 |    │       |
-|    |       ├── AddContact
-|    │       |     ├── AddContact.jsx
-|    │       |     └── addcontact-styled.jsx
+|    |       ├── Card
+|    │       |     ├── Card.jsx
+|    │       |     └── Card-styled.jsx
 |    |       |
-|    |       ├── Navbar
-|    │       |     ├── Navbar.jsx
-|    │       |     └── navbar-styled.jsx
+|    |       ├── Comment
+|    |       |     ├── Comment-func
+|    |       |     |      ├── CommentDelete.js
+|    │       |     |      └── CommentEdit.js
+|    |       |     |
+|    │       |     ├── Comment.jsx
+|    │       |     └── Comment-styled.jsx
 |    │       |
-|    │       └── Contacts
-|    |             ├── Contacts.jsx
-|    |             ├── contacts-styled.jsx
-|    │             └── List
-|    │                    ├── list-styled.jsx
-|    │                    └── List.jsx
+|    |       ├── DeleteModal
+|    |       |     ├──  DeleteBlogfunc
+|    │       |     |      └── DeleteBlog.js
+|    |       |     |
+|    │       |     ├── DeleteModal.jsx
+|    │       |     └── DeleteModal-styled.jsx
+|    │       |
+|    |       ├── Modal
+|    │       |     ├── Modal.jsx
+|    │       |     └── Modal-styled.jsx
+|    │       |
+|    │       └── Navbar
+|    │             ├── Navbar.jsx
+|    │             └── navbar-styled.jsx
+|    │
+|    ├── helpers
 |    │
 |    ├── private
-|    │       ├── action
-|    │       |     └── reducerAction.js
-|    │       |
-|    │       ├── reducers
-|    |       |     ├── addcontact.js
-|    │       |     └── loginsignin.js
-|    │       |
-|    │       ├── types
-|    │       |     └── reducersType.js
-|    │       |
-|    │       └── index.js
-|    │
-|    ├── private
-|    │       ├── privateLoginSignin.jsx
-|    │       └── PrivateRouter.jsx
+|    │       └── RouterPrivate.jsx
 |    │
 |    ├── pages
 |    │       |
-|    │       ├── Home
-|    │       |     ├── Home.jsx
-|    │       |     └── Home-styled.jsx
+|    │       ├── About
+|    │       |     ├── About.jsx
+|    │       |     └── About-styled.jsx
+|    │       |
+|    │       ├── Dashboard
+|    │       |     ├── Dashboard.jsx
+|    │       |     └── Dashboard-styled.jsx
+|    │       |
+|    │       ├── Details
+|    │       |     ├── Details.jsx
+|    │       |     └── Details-styled.jsx
+|    │       |
+|    │       ├── NewBlog
+|    │       |     ├── NewBlog.jsx
+|    │       |     └── NewBlog-styled.jsx
+|    │       |
+|    │       ├── Profile
+|    |       |     ├── ProfileUpdate
+|    |       |     |       └── ProfileUpdate.js
+|    |       |     |
+|    │       |     ├── Profile.jsx
+|    │       |     └── Profile-styled.jsx
+|    │       |
+|    │       ├── Register
+|    │       |     └── Register.jsx
 |    |       |
 |    |       ├── Login
 |    │       |     ├── login-styled.jsx
 |    │       |     └── Login.jsx
 |    |       |
-|    │       └── Signin
-|    │             └── Signin.jsx
+|    │       └── UpdateBlog
+|    |             ├── UpdateBlogFunc
+|    |             |       └── UpdateBlogFunc.js
+|    |             |
+|    │             ├── UpdateBlog.jsx
+|    │             └── update-styled.jsx
 |    │
-│    ├── firebase.js
 │    ├── App.js
-│    ├── App.css
+│    ├── index.css
 │    └── index.js
 |
 ├── .env
