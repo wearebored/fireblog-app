@@ -28,6 +28,7 @@ It is a blog web page created using router, redux toolkit and firebase.
   - useState
   - useEffect
   - Link
+  - Redux Toolkit
 
 - Firebase
   - Authentication
