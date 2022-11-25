@@ -19,9 +19,9 @@ export const Modals = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  position: relative;
   /* gap: 1rem; */
   border-radius: 10px;
-  position: relative;
 `;
 export const Yorumlar = styled.div`
   width: 100%;
@@ -70,7 +70,7 @@ export const YorumYaz = styled.div`
     color: white;
     border-radius: 5px;
     border: solid 1px;
-    &:disabled{
+    &:disabled {
       background-color: #7c7c7c;
     }
   }

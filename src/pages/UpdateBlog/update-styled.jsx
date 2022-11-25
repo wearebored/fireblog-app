@@ -11,7 +11,7 @@ export const UpdateCon = styled.div`
     height: 15rem;
     width: 30rem;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px;
+    box-shadow: 0 0 30px #1a8f8f;
   }
   input {
     font-size: 1.2rem;
@@ -32,13 +32,6 @@ export const UpdateCon = styled.div`
     color: white;
     &:disabled {
       background-color: gray;
-      opacity: 0.5;
-      &:hover {
-        background-color: gray;
-      }
-    }
-    &:hover {
-      background-color: #ff2d2d;
     }
   }
 `;

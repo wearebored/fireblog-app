@@ -1,3 +1,9 @@
+import { useState, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setModal } from "../../app/features/ModalSlice";
+import { setUyari } from "../../app/features/UyariSlice";
+import Likeveri from "../../helpers/Cardveri/Likeveri";
 import {
   CardCon,
   CardData,
@@ -9,108 +15,89 @@ import {
   MessageIcon,
   UserIcon,
 } from "./Card-styled";
-import { useEffect, useState } from "react";
 
-import LikeSilme, { LikeEkleme } from "../../helpers/LikeSilme";
-import CardsVeri from "../../helpers/CardsVeri";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setModal } from "../../app/features/ModalSlice";
-
-function Card({ e, en }) {
+function Card({ id, veri }) {
+  const { email } = useSelector((s) => s.login);
+  const { modal } = useSelector((s) => s.modal);
+  const [like, setLike] = useState(false);
+  const [keyler, setKeyler] = useState("");
   const dispatch = useDispatch();
-  const login = useSelector((s) => s.login);
-
-  const [likeler, setLikeler] = useState(false);
-  const [data, setData] = useState("");
   const navigate = useNavigate();
-  // console.log(e);
-  useEffect(() => {
-    CardsVeri(e, setData);
-    if (en.like.likes?.indexOf(login.email) > "-1") {
-      setLikeler(true);
-    }
-  }, [e, en.like.likes, login.email]);
-  useEffect(() => {
-    login.login || setLikeler(false);
-  }, [login.login]);
 
-  // -----------like silme--------
-  const silme = () => {
-    const veri = { ...en.like };
-
-    delete veri.likes[veri.likes.indexOf(login.email)];
-    veri.likesayac--;
-
-    return veri;
-  };
-
-  // -----------like ekle-----------
-  const ekle = () => {
-    const veri = { ...en.like };
-    if (veri.likes) {
-      veri.likes.push(login.email);
+  const likegüncel = useCallback(() => {
+    if (veri.like?.likes) {
+      let sayac = 0;
+      Object.keys(veri.like?.likes).forEach((e) => {
+        veri.like?.likes[e].indexOf(email) > -1 && sayac++;
+        veri.like?.likes[e].indexOf(email) > -1 && setKeyler(e);
+      });
+      // console.log(sayac);
+      sayac > 0 ? setLike(true) : setLike(false);
     } else {
-      veri.likes = [login.email];
+      setLike(false);
     }
-    veri.likesayac++;
+    email || setLike(false);
+  }, [email, veri.like?.likes]);
 
-    return veri;
-  };
+  useEffect(() => {
+    likegüncel();
+  }, [likegüncel]);
 
-  // ---------------------
+  // console.log(id);
+  // console.log(veri);
+
   return (
     <CardCon>
       <CardImage
         onClick={() => {
-          // console.log({e,en});
-          login.login
-            ? navigate(`/details/${e}`, { state: { e, en } })
-            : navigate("/login");
+          navigate(`/details/${id}`, { state: id });
+          modal && dispatch(setModal());
         }}
       >
-        <img src={data.url} alt={data.title} />
+        <img src={veri.url} alt={veri.title} />
       </CardImage>
       <CardData
         onClick={() => {
-          login.login
-            ? navigate(`/details/${e}`, { state: { e, en } })
-            : navigate("/login");
+          navigate(`/details/${id}`, { state: id });
+          modal && dispatch(setModal());
         }}
       >
-        <h4>{data.title}</h4>
-        <span>{data.date?.slice(0, 10)}</span>
-        <p>{data.content}</p>
+        <h4>{veri.title}</h4>
+        <span>{veri.date?.slice(0, 10)}</span>
+        <p>{veri.content}</p>
       </CardData>
       <CardLike>
         <EmailDiv>
           <UserIcon />
-          <p>{data.email}</p>
+          <p>{veri.email}</p>
         </EmailDiv>
         <Messagdiv>
           <LikeIcon
-            likeler={likeler ? "#ff0000" : "#727272"}
             onClick={() => {
-              if (login.login) {
-                if (!likeler) {
-                  LikeEkleme(ekle(), e);
-                } else {
-                  LikeSilme(silme(), e);
-                }
-                setLikeler(!likeler);
-              }
+              email && setLike(!like);
+              email &&
+                Likeveri({
+                  id,
+                  email,
+                  like,
+                  keyler,
+                  likesayac: veri.like?.likesayac,
+                });
+              email || dispatch(setUyari("Login to like!"));
             }}
+            state={like ? "#ff0000" : "#6e6e6e"}
           />
           <p>
-            <sup>{en.like?.likesayac}</sup>
+            <sup>{veri.like?.likesayac}</sup>
           </p>
           <MessageIcon
             onClick={() => {
-              dispatch(setModal(e));
+              email || dispatch(setUyari("Login to comment!"));
+              modal || dispatch(setModal(id));
             }}
           />
           <p>
-            <sup>{en.yorum?.yorumsayac}</sup>
+            <sup>{veri.yorum?.yorumsayac}</sup>
           </p>
         </Messagdiv>
       </CardLike>

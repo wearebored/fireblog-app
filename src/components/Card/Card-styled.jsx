@@ -10,12 +10,11 @@ export const CardCon = styled.div`
   flex-direction: column;
   box-shadow: 2px 2px 5px #000000a0;
   border-radius: 5px;
- 
 `;
 export const CardImage = styled.div`
   /* background-color: green; */
   overflow: hidden;
-  height: 50%;
+  height: 45%;
 
   display: flex;
   align-items: center;
@@ -23,6 +22,8 @@ export const CardImage = styled.div`
 
   img {
     width: 25rem;
+    
+
   }
 `;
 export const CardData = styled.div`
@@ -45,7 +46,7 @@ export const CardData = styled.div`
   }
 `;
 export const CardLike = styled.div`
-  height: 20%;
+  height: 25%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -72,10 +73,9 @@ export const Messagdiv = styled.div`
 `;
 export const LikeIcon = styled(FaHeart)`
   font-size: 1.8rem;
-  color: ${(like) => like.likeler};
+  color: ${(s)=>s.state};
 `;
 export const MessageIcon = styled(FiMessageSquare)`
   font-size: 1.8rem;
   color: #6e6e6e;
 `;
-

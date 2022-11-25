@@ -1,26 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import NewBlogVeriokuma from "../../helpers/NewBlogVeriokuma";
-import { VeriEkleme } from "../../helpers/VeriEkleme";
-
+import NewBlogyazma from "../../helpers/NewBlogdata/NewBlogyazma";
 import { NewBlogCon } from "./Newblog-styled";
 
 function NewBlog() {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [content, setContent] = useState("");
-  const data={title,url,content}
-  const {login}=useSelector((s)=>s.login)
-  const {email}=useSelector((s)=>s.login)
-  const navigate=useNavigate()
-  const [counter, setCounter] = useState("");
-  useEffect(() => {
-    
-    NewBlogVeriokuma("veriler", login, setCounter);
-  }, [login])
+  const { email } = useSelector((s) => s.login);
+  const data = { title, url, content, email };
 
-  
+  const navigate = useNavigate();
+
   return (
     <NewBlogCon>
       <img src="images/blok.png" alt="" />
@@ -55,11 +47,17 @@ function NewBlog() {
         name="content"
         id="content"
       ></textarea>
-      <button disabled={!title?true:!url?true:!content?true:false} onClick={()=>{VeriEkleme(data, login, "veriler", navigate, counter,email);
-    }} >SUBMIT</button>
+      <button
+        disabled={url && content && title ? false : true}
+        onClick={() => {
+          NewBlogyazma(data);
+          navigate("/");
+        }}
+      >
+        SUBMIT
+      </button>
     </NewBlogCon>
   );
-  
 }
 
 export default NewBlog;

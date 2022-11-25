@@ -20,7 +20,7 @@ function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const data = { fullname, gender, age, email, password };
-  const { login } = useSelector((store) => store.login);
+  const login = useSelector((store) => store.login.email);
   const dispatch = useDispatch();
 
   if (login) {
@@ -54,8 +54,8 @@ function Register() {
               id="gender"
             >
               <option value="gender">Gender</option>
-              <option value="Male">Male</option>
-              <option value="Famale">Famale</option>
+              <option value="male">Male</option>
+              <option value="famale">Famale</option>
             </select>
             <label htmlFor="age">Age</label>
             <input

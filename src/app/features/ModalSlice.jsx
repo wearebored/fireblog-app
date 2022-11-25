@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  modal: false,
-  modalid: "",
-};
+modal:false,
+modaldata:"",
+}
 
 const ModalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    setModal: (s, a) => {
-      s.modal = !s.modal;
-      a.payload && (s.modalid = String(a.payload));
-    },
-  },
+    setModal:(s,a)=>{
+        s.modal=!s.modal
+        s.modaldata=a.payload
+    }
+  }
 });
 
-export const { setModal } = ModalSlice.actions;
+export const {setModal} = ModalSlice.actions
 
-export default ModalSlice.reducer;
+export default ModalSlice.reducer

@@ -79,3 +79,4 @@ export const ImageUrl = styled.div`
     transform: translateY(-4rem);
   }
 `;
+

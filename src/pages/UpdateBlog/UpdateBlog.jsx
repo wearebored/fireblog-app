@@ -1,66 +1,62 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Updateyazma from "../../helpers/Updateveri/Updateyazma";
 import { UpdateCon } from "./update-styled";
-import UpdateBlogFunc from "./UpdateBlogFunc/UpdateBlogFunc";
 
 function UpdateBlog() {
   const { state } = useLocation();
-  const [change, setChange] = useState(true);
-  const [title, setTitle] = useState(state.ene.title);
-  const [image, setImage] = useState(state.ene.url);
-  const [content, setContent] = useState(state.ene.content);
+  // ----------------------------
+  const [title, setTitle] = useState(state.data.title);
+  const [url, setUrl] = useState(state.data.url);
+  const [content, setContent] = useState(state.data.content);
+  const [güncelleme, setGüncelleme] = useState(true);
+  // ----------------------------
   const navigate = useNavigate();
-
-  const data = { title, image, content, state: state.ene };
+  // ------------------------------
+ 
   return (
     <UpdateCon>
-      <img src={state.ene.url} alt="" />
+      <img src={url} alt={url} />
       <h2>Update Blog</h2>
       <label htmlFor="title">Title</label>
       <input
-        value={title}
         onChange={(e) => {
-          setChange(false);
           setTitle(e.target.value);
+          setGüncelleme(false);
         }}
+        value={title}
         id="title"
         type="text"
       />
       <label htmlFor="url">Image URL</label>
       <input
         onChange={(e) => {
-          setChange(false);
-          setImage(e.target.value);
+          setUrl(e.target.value);
+          setGüncelleme(false);
         }}
-        value={image}
+        value={url}
         id="url"
         type="text"
       />
       <label htmlFor="content">Content</label>
       <textarea
         onChange={(e) => {
-          setChange(false);
           setContent(e.target.value);
+          setGüncelleme(false);
         }}
         value={content}
         name="content"
         id="content"
       ></textarea>
       <button
+        disabled={güncelleme}
         onClick={() => {
-          UpdateBlogFunc(data);
-          navigate(-1);
+          Updateyazma({ url, content, title, id: state.state });
+          navigate("/");
+          setGüncelleme(true);
         }}
-        disabled={change}
       >
         UPDATE
-      </button>
-      <button
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        CANCEL
       </button>
     </UpdateCon>
   );

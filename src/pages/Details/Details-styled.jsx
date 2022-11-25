@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const DetailsCom = styled.div`
-  min-height: 90vh;
+  min-height: 100vh;
   width: 100%;
   /* background-color: aqua; */
   padding: 0 10rem;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   margin-bottom: 2rem;
+
+  /* align-items: center; */
 
   h2 {
     font-size: 3rem;
@@ -61,7 +62,4 @@ export const Kapsayici = styled.div`
   flex-direction: column;
   padding-bottom: 0.5rem;
   border-radius: 5px;
-`;
-export const ModalKapsa = styled.div`
-  position: relative;
 `;

@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Modals } from "../Modal/Modal-styled";
-import DeleteBlog from "./DeleteBlogFunc/DeleteBlog";
 import { DeleteModBut, Modaldiv2 } from "./DeleteModal-styled";
 
-function DeleteModal({ en, setDel }) {
+function DeleteModal({ en, setDel, state, Detailsdelete }) {
   // console.log(en);
   const navigate = useNavigate();
 
@@ -15,13 +14,11 @@ function DeleteModal({ en, setDel }) {
       id="modal"
     >
       <Modals>
-        <p style={{ fontSize: "2rem" }}>
-          Are you sure you want to delete the {en.title} ?
-        </p>
+        <p style={{ fontSize: "2rem" }}>Are you sure you want to delete ?</p>
         <DeleteModBut>
           <button
             onClick={() => {
-              DeleteBlog(en.id);
+              Detailsdelete(state);
               navigate("/");
             }}
           >

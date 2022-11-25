@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { setModal } from "../../app/features/ModalSlice";
-import CommentVeri from "../../helpers/CommentVeri";
-import {
-  CardCon,
-  CardData,
-  CardImage,
-  CardLike,
-  EmailDiv,
-  UserIcon,
-} from "../Card/Card-styled";
+import Messageekleme from "../../helpers/Messageveri/Messageekleme";
+import Yorumcekme from "../../helpers/Modalveri/Yorumcekme";
+import Yorumekle from "../../helpers/Modalveri/Yorumekle";
+import Card from "../Card/Card";
 import Comment from "../Comment/Comment";
 import {
   ModalClose,
@@ -20,51 +14,30 @@ import {
   YorumYaz,
 } from "./Modal-styled";
 
-function Modal({ en }) {
-  const { modalid } = useSelector((s) => s.modal);
-  const { email } = useSelector((s) => s.login);
+function Modal() {
+  const { modaldata } = useSelector((s) => s.modal);
   const [data, setData] = useState("");
+  const { email } = useSelector((s) => s.login);
   const [comment, setComment] = useState("");
+  const [veri, setVeri] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setData(en.data[Number(modalid)]);
-  }, [en.data, modalid]);
-
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch();
+    Messageekleme(modaldata, setData);
+    Yorumcekme({ setVeri, modaldata });
+  }, [modaldata]);
 
   return (
     <ModalDiv
       id="close"
-      onClick={(e) => e.target.id === "close" && dispatch(setModal())}
+      onClick={(e) => {
+        e.target.id === "close" && dispatch(setModal());
+      }}
     >
       <Modals>
+        <Card id={modaldata} veri={data} />
+        <ModalClose></ModalClose>
         <ModalClose onClick={() => dispatch(setModal())}>X</ModalClose>
-        <CardCon
-          onClick={() => {
-            // console.log({ en, modalid });
-            navigate(`/details/${modalid}`, {
-              state: { e: modalid, en: en.data[modalid] },
-            });
-            dispatch(setModal());
-          }}
-        >
-          <CardImage>
-            <img src={data.url} alt={data.title} />
-          </CardImage>
-          <CardData>
-            <h4>{data.title}</h4>
-            <span>{data.date?.slice(0, 10)}</span>
-            <p>{data.content}</p>
-          </CardData>
-          <CardLike>
-            <EmailDiv>
-              <UserIcon />
-              <p>{data.email}</p>
-            </EmailDiv>
-          </CardLike>
-        </CardCon>
         {email && (
           <YorumYaz>
             <textarea
@@ -79,7 +52,12 @@ function Modal({ en }) {
             <button
               disabled={comment ? false : true}
               onClick={() => {
-                CommentVeri(comment, modalid, email);
+                Yorumekle({
+                  comment,
+                  modaldata,
+                  email,
+                  yorumsayac: data.yorum.yorumsayac,
+                });
                 setComment("");
               }}
             >
@@ -88,8 +66,10 @@ function Modal({ en }) {
           </YorumYaz>
         )}
         <Yorumlar>
-          {data.yorum?.yorumsayac > 0 &&
-            data.yorum.yorums?.map((e, i) => <Comment key={i} data={e} />)}
+          {veri &&
+            Object.keys(veri).map((e) => {
+              return <Comment key={e} veri={veri[e]} e={e} />;
+            })}
         </Yorumlar>
       </Modals>
     </ModalDiv>

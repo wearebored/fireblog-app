@@ -14,7 +14,7 @@ function LoginFireBase(
 
       const user = userCredential.user;
 
-      dispatch(setLogin({ uid: user.uid, email: email }));
+      dispatch(setLogin({ uid: user.uid, email: user.email }));
 
       navigate(-1);
 

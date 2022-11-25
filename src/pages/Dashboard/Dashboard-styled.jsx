@@ -25,10 +25,4 @@ export const Cards = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  .time {
-    
-      /* height: 20rem; */
-      margin-top: 5rem;
-    
-  }
 `;

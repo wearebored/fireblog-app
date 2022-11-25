@@ -30,8 +30,7 @@ export const NewBlogCon = styled.div`
     border-radius: 5px;
     color: white;
     &:disabled{
-      opacity: 0.5;
-      background-color: #686868;
+      background-color: gray;
     }
   }
 `;

@@ -11,14 +11,13 @@ import Profile from "./pages/Profile/Profile";
 import Register from "./pages/Register/Register";
 import UpdateBlog from "./pages/UpdateBlog/UpdateBlog";
 import RoutePrivate from "./private/RoutePrivate";
+
 function App() {
   
   return (
     <div className="App">
       <Provider store={store} >
-       
       <BrowserRouter>
-      
         <Navbar />
         <Routes>
           <Route element={<RoutePrivate />}>

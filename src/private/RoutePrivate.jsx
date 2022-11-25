@@ -3,10 +3,10 @@ import { Navigate, Outlet } from "react-router-dom"
 
 
 function RoutePrivate() {
-  const {login}=useSelector((store)=>store.login)
+  const {email}=useSelector((store)=>store.login)
   
   return (
-    login ? <Outlet/>:<Navigate to="/login" />
+    email ? <Outlet/>:<Navigate to="/login" />
   )
 }
 

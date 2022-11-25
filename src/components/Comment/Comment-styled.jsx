@@ -25,6 +25,8 @@ export const OptionListe = styled.ul`
   background-color: #b4b4b4;
   padding: 4px;
   border-radius: 5px;
+  visibility: ${(s)=>s.state};
+ 
   li {
     text-align: center;
     list-style-type: none;

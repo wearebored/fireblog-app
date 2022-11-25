@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import VeriOkuma from "../../helpers/VeriOkuma";
+import Profilevericekme from "../../helpers/Profileveri/Profilevericekme";
+import Profileyazma from "../../helpers/Profileveri/Profileyazma";
 import {
   ImageUrl,
   InfoList,
@@ -9,55 +10,53 @@ import {
   ProfileInfo,
   UpdataProf,
 } from "./Profile-styled";
-import ProfileUpdate from "./ProfileUpdate/ProfileUpdate";
 
 function Profile() {
+  const { uid } = useSelector((s) => s.login);
+  // -----------------------------------
   const [userdata, setUserdata] = useState("");
-  const { login } = useSelector((s) => s.login);
-  const [update, setUpdate] = useState(false);
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
+
+  // -----------------------------
   const [güncelleme, setGüncelleme] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [update, setUpdate] = useState(false);
   const [image, setImage] = useState("images/loading.gif");
   const data = {
-    name,
+    fullname: name,
     gender,
     email,
     age,
-    login,
-    image: imageUrl ? imageUrl : image,
+    image,
   };
-
-  // --------------------------------------------
-  //  "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg";
-  // ----------------------------------
-  const güncelle = () => {
-    userdata.fullname && setName(userdata?.fullname);
-    userdata.gender && setGender(userdata?.gender);
-    userdata.email && setEmail(userdata?.email);
-    userdata.age && setAge(userdata?.age);
-  };
-
   useEffect(() => {
-    VeriOkuma("kullanici", login, setUserdata, setImage);
-  }, [login, güncelleme, userdata.image]);
+    Profilevericekme({ uid, setData: setUserdata });
+    setName(userdata.fullname ? userdata.fullname : "");
+    setAge(userdata.age ? userdata.age : "");
+    setEmail(userdata.email ? userdata.email : "");
+    setGender(userdata.gender ? userdata.gender : "");
+  }, [uid, userdata.fullname, userdata.age, userdata.email, userdata.gender]);
+  useEffect(() => {
+    userdata && (userdata.image ? setImage(userdata.image) : setImage(""));
+  }, [userdata.image, userdata]);
 
   return (
     <div>
       <ProfileCon>
-        <PhotoDiv store={image}></PhotoDiv>
+        <PhotoDiv
+          store={image === "" ? "https://picsum.photos/1600/900" : image}
+        ></PhotoDiv>
         <ImageUrl>
           {update && (
             <input
               placeholder="Image Url"
               onChange={(e) => {
-                setImageUrl(e.target.value);
+                setImage(e.target.value);
                 setGüncelleme(true);
               }}
-              value={imageUrl}
+              value={image}
               type="text"
             />
           )}
@@ -92,8 +91,8 @@ function Profile() {
                 <select
                   value={gender}
                   onChange={(e) => {
-                    setGender(e.target.value);
-                    setGüncelleme(true);
+                    e.target.value === "Gender" || setGender(e.target.value);
+                    e.target.value === "Gender" || setGüncelleme(true);
                   }}
                 >
                   <option value="Gender">Gender</option>
@@ -146,12 +145,11 @@ function Profile() {
           <button
             onClick={() => {
               setUpdate(!update);
-              update || güncelle();
-              güncelleme && ProfileUpdate({ data });
+              güncelleme && Profileyazma({ uid, data });
               setGüncelleme(false);
             }}
           >
-            {update ? "SAVE" : "UPDATE"}
+            {update ? "UPDATE" : "EDİT"}
           </button>
           {/* {update && (
             <button

@@ -1,146 +1,70 @@
-# FireBlog App
+# Getting Started with Create React App
 
-## Description
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-It is a blog web page created using router, redux toolkit and firebase.
+## Available Scripts
 
-## Tools used in the project
+In the project directory, you can run:
 
-- HTML
+### `yarn start`
 
-- CSS
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- JS
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-- ReactJS
+### `yarn test`
 
-  - Styled Components
-  - .map
-  - BrowserRouter
-  - Route
-  - Routes
-  - useNavigate
-  - Navigate
-  - React Icons
-  - Outlet
-  - useDispatch
-  - useSelector
-  - useState
-  - useEffect
-  - Link
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- Firebase
-  - Authentication
-  - Realtime Database
+### `yarn build`
 
-<!-- ## Github-pages -->
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Pages
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-[ Project Website ](https://tangerine-naiad-3f53d2.netlify.app)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Preview
+### `yarn eject`
 
-![ Project Snapshot ](fireblogapp.gif)
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-## Project Skeleton
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-```
-Blog Web Page (folder)
-|
-├── public
-|     ├── images
-│     └── index.html
-|
-├── src
-│    ├── app
-|    │       |
-|    |       ├── features
-|    │       |     ├── LoginSlice.jsx
-|    │       |     └── ModalSlice.jsx
-|    |       |
-|    │       |
-|    │       └── store.jsx
-|    |
-│    ├── components
-|    │       |
-|    |       ├── Card
-|    │       |     ├── Card.jsx
-|    │       |     └── Card-styled.jsx
-|    |       |
-|    |       ├── Comment
-|    |       |     ├── Comment-func
-|    |       |     |      ├── CommentDelete.js
-|    │       |     |      └── CommentEdit.js
-|    |       |     |
-|    │       |     ├── Comment.jsx
-|    │       |     └── Comment-styled.jsx
-|    │       |
-|    |       ├── DeleteModal
-|    |       |     ├──  DeleteBlogfunc
-|    │       |     |      └── DeleteBlog.js
-|    |       |     |
-|    │       |     ├── DeleteModal.jsx
-|    │       |     └── DeleteModal-styled.jsx
-|    │       |
-|    |       ├── Modal
-|    │       |     ├── Modal.jsx
-|    │       |     └── Modal-styled.jsx
-|    │       |
-|    │       └── Navbar
-|    │             ├── Navbar.jsx
-|    │             └── navbar-styled.jsx
-|    │
-|    ├── helpers
-|    │
-|    ├── private
-|    │       └── RouterPrivate.jsx
-|    │
-|    ├── pages
-|    │       |
-|    │       ├── About
-|    │       |     ├── About.jsx
-|    │       |     └── About-styled.jsx
-|    │       |
-|    │       ├── Dashboard
-|    │       |     ├── Dashboard.jsx
-|    │       |     └── Dashboard-styled.jsx
-|    │       |
-|    │       ├── Details
-|    │       |     ├── Details.jsx
-|    │       |     └── Details-styled.jsx
-|    │       |
-|    │       ├── NewBlog
-|    │       |     ├── NewBlog.jsx
-|    │       |     └── NewBlog-styled.jsx
-|    │       |
-|    │       ├── Profile
-|    |       |     ├── ProfileUpdate
-|    |       |     |       └── ProfileUpdate.js
-|    |       |     |
-|    │       |     ├── Profile.jsx
-|    │       |     └── Profile-styled.jsx
-|    │       |
-|    │       ├── Register
-|    │       |     └── Register.jsx
-|    |       |
-|    |       ├── Login
-|    │       |     ├── login-styled.jsx
-|    │       |     └── Login.jsx
-|    |       |
-|    │       └── UpdateBlog
-|    |             ├── UpdateBlogFunc
-|    |             |       └── UpdateBlogFunc.js
-|    |             |
-|    │             ├── UpdateBlog.jsx
-|    │             └── update-styled.jsx
-|    │
-│    ├── App.js
-│    ├── index.css
-│    └── index.js
-|
-├── .env
-├── package.json
-├── yarn.lock
-└── README.md
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
