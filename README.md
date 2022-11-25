@@ -16,8 +16,26 @@ You may also see any lint errors in the console.
 
 ### `yarn test`
 
+<<<<<<< HEAD
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+=======
+  - Styled Components
+  - .map
+  - BrowserRouter
+  - Route
+  - Routes
+  - useNavigate
+  - Navigate
+  - React Icons
+  - Outlet
+  - useDispatch
+  - useSelector
+  - useState
+  - useEffect
+  - Link
+  - Redux Toolkit
+>>>>>>> df13a34288050da4055408cfd042c479e7d989f7
 
 ### `yarn build`
 
